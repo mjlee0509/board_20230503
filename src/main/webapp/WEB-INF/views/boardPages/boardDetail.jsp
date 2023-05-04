@@ -29,11 +29,26 @@
                      disabled>
         비밀번호 : <input type="password" name="boardPass" id="board-pass" class="form-control" value="${board.boardPass}"
                       disabled>
-        제목 : <input type="text" name="boardTitle" id="board-title" class="form-control" value="${board.boardTitle}" disabled>
-        조회수 : <input type="text" name="boardHits" id="board-hits" class="form-control" value="${board.boardHits}" disabled>
-        게시일자 : <fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate> <br> <br>
-        내용 : <textarea name="boardContents" id="board-contents" class="form-control" cols="30" rows="10"
-                       disabled>${board.boardContents}</textarea>
+        제목 : <input type="text" name="boardTitle" id="board-title" class="form-control" value="${board.boardTitle}"
+                    disabled>
+        조회수 : <input type="text" name="boardHits" id="board-hits" class="form-control" value="${board.boardHits}"
+                     disabled>
+        게시일자 : <fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate> <br>
+        <br>
+        내용 :
+        <textarea name="boardContents" id="board-contents" class="form-control" cols="30" rows="10"
+                       disabled>
+
+        ${board.boardContents}
+        </textarea>
+
+        <c:if test="${board.fileAttached == 1}">
+            <div class="image-container">
+                <img src="${pageContext.request.contextPath}/upload/${boardFile.storedFileName}" alt="">
+                    <%--                        <!--현재 경로에 접근-->--%>
+            </div>
+        </c:if> <br>
+
         <br>
         <div style="float: right">
             <input type="button" class="button-green" value="수정" onclick="go_update()">

@@ -1,6 +1,7 @@
 package com.icia.board.controller;
 
 import com.icia.board.dto.BoardDTO;
+import com.icia.board.dto.BoardFileDTO;
 import com.icia.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -23,7 +25,8 @@ public class BoardController {
         return "boardPages/boardSave";
     }
     @PostMapping("/save")
-    public String save(@ModelAttribute BoardDTO boardDTO) {
+    public String save(@ModelAttribute BoardDTO boardDTO) throws IOException {
+        // 여기서도 예외 떠넘기기 시전; 그러면 servlet에서 알아서 처리하겠지ㅇㅇ
         boardService.save(boardDTO);
         return "redirect:/board/list";
     }
@@ -39,6 +42,12 @@ public class BoardController {
         boardService.updateHits(id);
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board", boardDTO);
+        // 5-2. 파일이 있는 경우에만 파일 이름 가져오기
+        if(boardDTO.getFileAttached()==1) {
+            BoardFileDTO boardFileDTO = boardService.findFile(id);
+            model.addAttribute("boardFile", boardFileDTO);
+            System.out.println("boardFileDTO = " + boardFileDTO);
+        }
         return "boardPages/boardDetail";
     }
     @GetMapping("/delete-check")
@@ -50,7 +59,7 @@ public class BoardController {
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Long id) {
         boardService.delete(id);
-        return "redirect:/board/";
+        return "redirect:/board/list";
     }
     @GetMapping("/update")
     public String updateForm(@RequestParam("id") Long id, Model model) {

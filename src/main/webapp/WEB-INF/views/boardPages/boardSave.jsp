@@ -20,12 +20,13 @@
 <%@include file="../component/nav.jsp" %>
 <div class="main">
     <h2>글쓰기</h2>
-    <form action="/board/save" method="post">
+    <form action="/board/save" method="post" enctype="multipart/form-data"> <!--파일첨부시 enctype 필수-->
         <input type="text" name="boardWriter" id="board-writer" class="form-control" placeholder="닉네임"> <br>
         <input type="text" name="boardPass" id="board-pass" class="form-control" placeholder="비밀번호"> <br>
         <input type="text" name="boardTitle" id="board-title" class="form-control" placeholder="제목"> <br>
         <textarea type="text" name="boardContents" id="board-contents" class="form-control"
-                  placeholder="내용" cols="30" rows="10"></textarea> <br>
+                  placeholder="내용" cols="30" rows="10"></textarea>
+        <input type="file" name="boardFile"> <br>
         <div>
             <input type="submit" class="buttonGreen" value="업로드">
             <input type="button" class="buttonRed" onclick="go_index()" value="취소">

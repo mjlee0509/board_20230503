@@ -1,6 +1,7 @@
 package com.icia.board.dto;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -15,6 +16,7 @@ public class BoardDTO {
     private Timestamp boardCreatedDate;
     private int boardHits;
     private int fileAttached;
+    private MultipartFile boardFile;
 
 
 }

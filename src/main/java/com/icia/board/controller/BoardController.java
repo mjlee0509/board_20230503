@@ -44,8 +44,8 @@ public class BoardController {
         model.addAttribute("board", boardDTO);
         // 5-2. 파일이 있는 경우에만 파일 이름 가져오기
         if(boardDTO.getFileAttached()==1) {
-            BoardFileDTO boardFileDTO = boardService.findFile(id);
-            model.addAttribute("boardFile", boardFileDTO);
+            List<BoardFileDTO> boardFileDTO = boardService.findFile(id);
+            model.addAttribute("boardFileList", boardFileDTO);
             System.out.println("boardFileDTO = " + boardFileDTO);
         }
         return "boardPages/boardDetail";

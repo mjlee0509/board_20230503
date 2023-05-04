@@ -37,15 +37,13 @@
         <br>
         내용 :
         <textarea name="boardContents" id="board-contents" class="form-control" cols="30" rows="10"
-                       disabled>
-
-        ${board.boardContents}
-        </textarea>
+                       disabled>${board.boardContents}</textarea>
 
         <c:if test="${board.fileAttached == 1}">
             <div class="image-container">
-                <img src="${pageContext.request.contextPath}/upload/${boardFile.storedFileName}" alt="">
-                    <%--                        <!--현재 경로에 접근-->--%>
+                <c:forEach items="${boardFileList}" var="boardFile">
+                <img src="${pageContext.request.contextPath}/upload/${boardFile.storedFileName}" alt="" width="100" height="100">
+                </c:forEach>
             </div>
         </c:if> <br>
 

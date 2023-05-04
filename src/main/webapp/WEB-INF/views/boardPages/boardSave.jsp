@@ -26,7 +26,7 @@
         <input type="text" name="boardTitle" id="board-title" class="form-control" placeholder="제목"> <br>
         <textarea type="text" name="boardContents" id="board-contents" class="form-control"
                   placeholder="내용" cols="30" rows="10"></textarea>
-        <input type="file" name="boardFile"> <br>
+        <input type="file" name="boardFile" multiple> <br>
         <div>
             <input type="submit" class="buttonGreen" value="업로드">
             <input type="button" class="buttonRed" onclick="go_index()" value="취소">

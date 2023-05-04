@@ -1,0 +1,45 @@
+table {
+    margin: 0 auto;
+    border: 1px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+    width: 60%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+}
+th {
+    text-align: left;
+}
+thead {
+    font-weight: bold;
+    color: white;
+    background-color: #484848;
+}
+td, th {
+    padding: 1em .5em;
+    vertical-align: middle;
+}
+td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background-color: white;
+}
+input.button-red {
+    background-color: #ff0059;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/*#buttonDelete:hover {*/
+/*    background-color: #d00050;*/
+/*    color: white;*/
+/*    cursor: pointer;*/
+/*}*/
+input.button-green {
+    background-color: #00ff19;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -3,6 +3,7 @@ package com.icia.board.controller;
 import com.icia.board.dto.BoardDTO;
 import com.icia.board.dto.BoardFileDTO;
 import com.icia.board.dto.CommentDTO;
+import com.icia.board.dto.PageDTO;
 import com.icia.board.service.BoardService;
 import com.icia.board.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,25 @@ public class BoardController {
         model.addAttribute("boardList", boardDTOList);
         return "boardPages/boardList";
     }
+
+    // 페이징처리 Step 1. 메서드 만들기
+    @GetMapping("/paging")
+    public String paging(@RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
+    // required = false; 파라미터가 필수는 아니다
+    // defaultValue = "1"; 파라미터가 없을 경우 기본값을 1로 한다
+        System.out.println("page = " + page);
+        // 페이징처리 Step 1-1. 사용자가 요청한 페이지에 해당하는 글 목록 데이터 가져오기
+        List<BoardDTO> boardDTOList = boardService.pagingList(page);
+        System.out.println("boardDTOList = " + boardDTOList);
+        // 페이징처리 Step 1-2. 하단에 보여줄 페이지 번호 목록
+        PageDTO pageDTO = boardService.pagingParam(page);
+        model.addAttribute("boardList", boardDTOList);
+        model.addAttribute("paging", pageDTO);
+        return "boardPages/boardPaging";
+
+    }
+
+
     @GetMapping
     public String detail(@RequestParam("id") Long id, Model model) {
         //조회할 때 조회수 1씩 증가하는 메서드

@@ -2,6 +2,7 @@ package com.icia.board.service;
 
 import com.icia.board.dto.BoardDTO;
 import com.icia.board.dto.BoardFileDTO;
+import com.icia.board.dto.PageDTO;
 import com.icia.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -86,5 +89,19 @@ public class BoardService {
 
     public List<BoardFileDTO> findFile(Long id) {
         return boardRepository.findFile(id);
+    }
+
+    public List<BoardDTO> pagingList(int page) {
+        int pageLimit = 3; // 한 페이지에 보여줄 글 갯수
+        int pagingStart = (page-1) * pageLimit;
+        Map<String, Integer> pagingParams = new HashMap<>();
+        pagingParams.put("start", pagingStart);
+        pagingParams.put("limit", pageLimit);
+        List<BoardDTO> boardDTOList = boardRepository.pagingList(pagingParams);
+        return boardDTOList;
+    }
+
+    public PageDTO pagingParam(int page) {
+        // 한 페이지에 3개씩, 하단에는 3페이지씩
     }
 }

@@ -5,5 +5,6 @@
     <typeAliases>
         <typeAlias type="com.icia.board.dto.BoardDTO" alias="board" />
         <typeAlias type="com.icia.board.dto.BoardFileDTO" alias="boardFile" />
+        <typeAlias type="com.icia.board.dto.CommentDTO" alias="comment" />
     </typeAliases>
 </configuration>

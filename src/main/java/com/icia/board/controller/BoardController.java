@@ -2,7 +2,9 @@ package com.icia.board.controller;
 
 import com.icia.board.dto.BoardDTO;
 import com.icia.board.dto.BoardFileDTO;
+import com.icia.board.dto.CommentDTO;
 import com.icia.board.service.BoardService;
+import com.icia.board.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +19,9 @@ import java.util.List;
 public class BoardController {
 
     @Autowired
-    public BoardService boardService;
+    private BoardService boardService;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/save")
     public String saveForm() {
@@ -47,6 +51,13 @@ public class BoardController {
             List<BoardFileDTO> boardFileDTO = boardService.findFile(id);
             model.addAttribute("boardFileList", boardFileDTO);
             System.out.println("boardFileDTO = " + boardFileDTO);
+        }
+        // 댓글기능구현 Step 5. 댓글을 작성하지 않았을 때에도 댓글 리스트를 화면에 띄우기
+        List<CommentDTO> commentDTOList = commentService.findAll(id);
+        if (commentDTOList.size() == 0) {
+            model.addAttribute("commentList", null);
+        } else {
+            model.addAttribute("commentList", commentDTOList);
         }
         return "boardPages/boardDetail";
     }

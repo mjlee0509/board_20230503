@@ -28,8 +28,8 @@
                   placeholder="내용" cols="30" rows="10"></textarea>
         <input type="file" name="boardFile" multiple> <br>
         <div>
-            <input type="submit" class="buttonGreen" value="업로드">
-            <input type="button" class="buttonRed" onclick="go_index()" value="취소">
+            <input type="submit" class="button-green" value="업로드">
+            <input type="button" class="button-red" onclick="go_index()" value="취소">
         </div>
     </form>
 </div>

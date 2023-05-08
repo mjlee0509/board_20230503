@@ -102,6 +102,42 @@ public class BoardService {
     }
 
     public PageDTO pagingParam(int page) {
-        // 한 페이지에 3개씩, 하단에는 3페이지씩
+        /*
+          한 페이지에 3개씩, 하단에는 3페이지씩 띄워보자.
+          단, 맨 끝 페이지의 수는 필요한 페이지의 수에 따라 유동적이어야 한다 (페이징처리에서 가장 중요한 부분임)
+        */
+        int pageLimit = 3;
+        int blockLimit = 3;
+
+        // 페이징처리 Step 2-1. 전체 글 개수 조회
+        int boardCount = boardRepository.boardCount();
+
+        // 페이징처리 Step 2-2. 전체 페이지 갯수 계산
+        /*
+            i. boardCount / 3 의 결과는 버림 처리된 int임
+            ii. 그러므로 이것을 double로 형변환한 후
+            iii. Math.ceil을 통해 올림처리 하고
+            iv. int로 다시 형변환해주는 과정임
+        */
+        int maxPage = (int)(Math.ceil((double)boardCount/pageLimit));
+
+        // 페이징처리 Step 2-3. 시작페이지&마지막페이지 값 계산
+            // 시작페이지 (1, 4, 7, ... )
+        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+            // 마지막 페이지 (3, 6, 9, ... )
+        int endPage = startPage + blockLimit - 1;
+
+        // 페이징처리 Step 2-4. 현재 페이지 개수가 계산된 endPage보다 적을 떄에는 endPage 값을 maxPage 값과 같게 세팅
+        if(endPage > maxPage) {
+            endPage = maxPage;
+        }
+
+        // 페이징처리 Step 2-5. 이 결과를 DTO에 담아서 가져가기
+        PageDTO pageDTO = new PageDTO();
+        pageDTO.setPage(page);
+        pageDTO.setMaxPage(maxPage);
+        pageDTO.setEndPage(endPage);
+        pageDTO.setStartPage(startPage);
+        return pageDTO;
     }
 }

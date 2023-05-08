@@ -12,6 +12,8 @@
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/main.css"></link>
     <link rel="stylesheet" href="/resources/css/table.css">
+    <link rel="stylesheet" href="/resources/bootstrap.min.css">
+    <script src="/resources/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <%@include file="../component/header.jsp"%>

@@ -36,8 +36,8 @@ input.button-red {
 /*    color: white;*/
 /*    cursor: pointer;*/
 /*}*/
-input.button-green {
-    background-color: #00ff19;
+input.button-black {
+    background-color: #000000;
     color: #ffffff;
     border: none;
     border-radius: 5px;

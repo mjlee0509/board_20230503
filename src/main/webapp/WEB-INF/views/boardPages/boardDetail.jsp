@@ -43,25 +43,24 @@
         <textarea name="boardContents" id="board-contents" class="form-control" cols="30" rows="10"
                        disabled>${board.boardContents}</textarea> <br>
         이미지 :
+        <br>
         <c:if test="${board.fileAttached == 1}">
-            <div class="image-container">
                 <c:forEach items="${boardFileList}" var="boardFile">
                 <img src="${pageContext.request.contextPath}/upload/${boardFile.storedFileName}" alt="" width="100" height="100">
                 </c:forEach>
-            </div>
         </c:if> <br>
 
         <br>
-        <div style="float: right">
-            <input type="button" class="button-green" value="수정" onclick="go_update()">
-            <input type="button" class="button-green" value="목록" onclick="go_list()">
+        <div id="button-area" style="float: right; padding-top: 30px; padding-bottom: 30px">
+            <input type="button" class="button-black" value="수정" onclick="go_update()">
+            <input type="button" class="button-black" value="목록" onclick="go_list()">
             <input type="button" class="button-red" value="삭제" onclick="go_delete()">
         </div>
         <br>
         <div id="comment-write-area">
-            <input type="text" id="comment-writer" placeholder="글쓴이">
-            <input type="text" id="comment-contents" placeholder="내용을 입력하세요">
-            <input type="button" onclick="comment_write()" value="댓글작성" class="button-green">
+            <input type="text" id="comment-writer" placeholder="글쓴이" class="form-control">
+            <textarea id="comment-contents" placeholder="내용을 입력하세요" class="form-control" cols="30" rows="5"></textarea>
+            <input type="button" onclick="comment_write()" value="댓글작성" class="button-black" style="float: right">
         </div>
         <div id="comment-list">
             <!-- 댓글기능구현 Step 7. -->

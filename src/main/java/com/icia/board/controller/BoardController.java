@@ -48,10 +48,10 @@ public class BoardController {
     // required = false; 파라미터가 필수는 아니다
     // defaultValue = "1"; 파라미터가 없을 경우 기본값을 1로 한다
         System.out.println("page = " + page);
-        // 페이징처리 Step 1-1. 사용자가 요청한 페이지에 해당하는 글 목록 데이터 가져오기
+        // 페이징처리 Step 1. 사용자가 요청한 페이지에 해당하는 글 목록 데이터 가져오기
         List<BoardDTO> boardDTOList = boardService.pagingList(page);
         System.out.println("boardDTOList = " + boardDTOList);
-        // 페이징처리 Step 1-2. 하단에 보여줄 페이지 번호 목록
+        // 페이징처리 Step 2. 하단에 보여줄 페이지 번호 목록
         PageDTO pageDTO = boardService.pagingParam(page);
         model.addAttribute("boardList", boardDTOList);
         model.addAttribute("paging", pageDTO);

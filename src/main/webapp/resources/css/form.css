@@ -8,8 +8,15 @@ form {
     height: 300px;
 }
 
-.image-container {
-    width: 441px;
-    height: 254px;
+
+input#comment-write-area.form-control {
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+#button-area {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: right;
 }
 

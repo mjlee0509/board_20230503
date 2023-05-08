@@ -10,4 +10,5 @@
     <a href="/">홈</a>
     <a href="/board/save">글쓰기</a>
     <a href="/board/list">게시판</a>
+    <a href="/board/paging">엄마, 내가 페이징처리를 해냈어요!</a>
 </div>

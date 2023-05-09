@@ -63,19 +63,22 @@
             <input type="button" onclick="comment_write()" value="댓글작성" class="button-black" style="float: right">
         </div>
         <div id="comment-list">
-            <!-- 댓글기능구현 Step 7. -->
+            <!-- 댓글기능구현 Step 6. -->
             <c:choose>
                 <c:when test="${commentList == null}">
                     <h2>작성된 댓글이 없습니다</h2>
                 </c:when>
                 <c:otherwise>
                     <table>
+                        <thead>
                         <tr>
                             <th>id</th>
                             <th>작성자</th>
                             <th>내용</th>
                             <th>작성시간</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <c:forEach items="${commentList}" var="comment">
                             <tr>
                                 <td>${comment.id}</td>
@@ -86,7 +89,7 @@
                                 </td>
                             </tr>
                         </c:forEach>
-
+                        </tbody>
                     </table>
                 </c:otherwise>
             </c:choose>
@@ -99,7 +102,10 @@
 <script>
     <%--document.getElementById("board-contents").innerHTML = "${board.boardContents}";--%>
     const go_list = () => {
-        location.href = "/board/list"
+        const type = '${type}'
+        const q = '${q}'
+        const page = '${page}'
+        location.href = "/board/paging?page="+page+"&type="+type+"&q="+q;
     }
     const go_update = () => {
         const id = '${board.id}';
